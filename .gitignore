@@ -1,0 +1,11 @@
+.DS_Store
+._.DS_Store
+.project
+
+Release/
+Debug/
+\build/
+\dependency/Luna
+\dependency/wiringPi
+\certs/mansoo.kim
+\.vscode/

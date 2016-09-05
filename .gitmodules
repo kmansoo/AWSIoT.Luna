@@ -1,0 +1,6 @@
+[submodule "dependency/Luna"]
+	path = dependency/Luna
+	url = https://github.com/kmansoo/Luna.git
+[submodule "dependency/wiringPi"]
+	path = dependency/wiringPi
+	url = git://git.drogon.net/wiringPi
