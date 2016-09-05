@@ -29,6 +29,7 @@ add_executable(MultiSensorsDeviceSample
 
 TARGET_LINK_LIBRARIES(MultiSensorsDeviceSample
 	ccJsonParser
+        wiringPi
 	AWSIoTEmbeddedSDK
 	mbedtls
 	mbedcrypto

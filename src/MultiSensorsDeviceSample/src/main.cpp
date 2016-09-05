@@ -36,6 +36,83 @@
 #include <thread>
 #include <iostream>
 
+// wiring Pi
+#include "ccJsonParser/json/reader.h"
+
+#include <stdint.h> //uint8_t definitions
+#include <errno.h> //error output
+#include <wiringPi.h>
+#include <wiringSerial.h>
+
+// Find Serial device on Raspberry with ~ls /dev/tty*
+// ARDUINO_UNO "/dev/ttyACM0"
+// FTDI_PROGRAMMER "/dev/ttyUSB0"
+// HARDWARE_UART "/dev/ttyAMA0"
+char device[]= "/dev/ttyACM0";
+// filedescriptor
+int fd;
+unsigned long baud = 9600;
+
+//prototypes
+void loop(void);
+void setup(void);
+
+void setup(){
+
+  printf("%s \n", "Raspberry Startup!");
+  fflush(stdout);
+
+  //get filedescriptor
+  if ((fd = serialOpen (device, baud)) < 0){
+    fprintf (stderr, "Unable to open serial device: %s\n", strerror (errno)) ;
+    exit(1); //error
+  }
+
+  //setup GPIO in wiringPi mode
+  if (wiringPiSetup () == -1){
+    fprintf (stdout, "Unable to start wiringPi: %s\n", strerror (errno)) ;
+    exit(1); //error
+  }
+
+}
+
+void loop(){
+  // read signal
+  static int json_data_buf_index = 0;
+  static char json_data_buf[2048];
+
+  if(serialDataAvail (fd)){
+    char newChar = serialGetchar (fd);
+
+    json_data_buf[json_data_buf_index++] = newChar;
+
+    if (newChar == '\n') {
+       json_data_buf[json_data_buf_index] = '\0';
+       json_data_buf_index = 0;
+
+       Json::Reader    reader;
+       Json::Value     root_value;
+
+       if (!reader.parse(json_data_buf, root_value)) {
+          return;
+       }
+
+       if (root_value.isObject() == false)  {
+          return;
+       }
+
+       if (root_value["device"].isNull()) {
+          return;
+       }
+
+       std::cout << "Device.type: " << root_value["device"]["type"].asString() << std::endl;
+     }
+  }
+
+}
+
+////////////////////
+
 #include "aws_iot_log.h"
 #include "aws_iot_version.h"
 #include "aws_iot_mqtt_client_interface.h"
@@ -82,7 +159,7 @@ void disconnectCallbackHandler(AWS_IoT_Client *pClient, void *data) {
 	}
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char *argv[]) {
 	bool infinitePublishFlag = true;
 
 	std::string cert_directory;
@@ -202,50 +279,24 @@ int main(int argc, char **argv) {
 		infinitePublishFlag = false;
 	}
 
+        // setup();
+        setup();
 
 	std::thread t([&] {
-		while (true)
+		while (true) {
 			rc = aws_iot_mqtt_yield(&client, 100);
+                }
 	});
 
+        std::thread t2([&] {
+                while (true) {
+                        loop();
+                        usleep(1000);
+                }
+        });
+
 	t.join();
-
-/*
-	while((NETWORK_ATTEMPTING_RECONNECT == rc || NETWORK_RECONNECTED == rc || SUCCESS == rc)
-		  && (publishCount > 0 || infinitePublishFlag)) {
-
-		//Max time the yield function will wait for read messages
-
-		rc = aws_iot_mqtt_yield(&client, 100);
-		if(NETWORK_ATTEMPTING_RECONNECT == rc) {
-			// If the client is attempting to reconnect we will skip the rest of the loop.
-			continue;
-		}
-
-
-		IOT_INFO("-->sleep, %d / 100", publishCount);
-
-		sprintf(cPayload, "%s : %d ", "hello from SDK QOS0", i++);
-		paramsQOS0.payloadLen = strlen(cPayload);
-		rc = aws_iot_mqtt_publish(&client, "sdkTest/sub", 11, &paramsQOS0);
-		if(publishCount > 0) {
-			publishCount--;
-		}
-
-		sprintf(cPayload, "%s : %d ", "hello from SDK QOS1", i++);
-		paramsQOS1.payloadLen = strlen(cPayload);
-		do {
-			rc = aws_iot_mqtt_publish(&client, "sdkTest/sub", 11, &paramsQOS1);
-			if(publishCount > 0) {
-				publishCount--;
-			}
-		} while(MQTT_REQUEST_TIMEOUT_ERROR == rc && (publishCount > 0 || infinitePublishFlag));
-
-
-		sleep(4);
-
-	}
-*/
+        t2.join();
 
 	if(SUCCESS != rc) {
 		IOT_ERROR("An error occurred in the loop.\n");
