@@ -9,6 +9,8 @@
 
 #include <iostream>
 
+#include <string.h>
+
 #ifndef WIN32
 #   include <unistd.h>
 #else

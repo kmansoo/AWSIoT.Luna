@@ -112,13 +112,13 @@ bool ArduinoAgent::init() {
 
     // get filedescriptor
     if ((handle_ = serialOpen(device_name_.c_str(), baud)) < 0) {
-        fprintf(stderr, "Unable to open serial device: %s\n", strerror(errno));
+        // fprintf(stderr, "Unable to open serial device: %s\n", strerror(errno));
         return false;
     }
 
     // setup GPIO in wiringPi mode
     if (wiringPiSetup() == -1) {
-        fprintf(stdout, "Unable to start wiringPi: %s\n", strerror(errno));
+        // fprintf(stdout, "Unable to start wiringPi: %s\n", strerror(errno));
         return false;
     }
 

@@ -33,6 +33,7 @@ add_executable(MultiSensorsDeviceSample
 if ("${DEVICE}" MATCHES "RPi")
 TARGET_LINK_LIBRARIES(MultiSensorsDeviceSample
 	ccJsonParser
+        ccCore
 	wiringPi
 	AWSIoTEmbeddedSDK
 	mbedtls
