@@ -21,6 +21,8 @@
 #include <vector>
 #include <chrono>
 
+#include <iostream>
+
 #include "timer_platform.h"
 
 bool has_timer_expired(Timer *timer) {
@@ -45,14 +47,10 @@ void countdown_ms(Timer *timer, uint32_t timeout) {
 
 uint32_t left_ms(Timer *timer) {
     auto temp_time = std::chrono::system_clock::from_time_t(timer->end_time);
-    std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+    auto now = std::chrono::system_clock::now();
 
     auto diff_time = std::chrono::duration_cast<std::chrono::milliseconds>(temp_time - now);
 
-    temp_time -= diff_time;
-
-    timer->end_time = std::chrono::system_clock::to_time_t(temp_time);
-    
     if (diff_time.count() <= 0)
         return 0;
 

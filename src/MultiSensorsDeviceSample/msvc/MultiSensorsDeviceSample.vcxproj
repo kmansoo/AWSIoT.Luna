@@ -54,7 +54,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;ENABLE_IOT_DEBUG;ENABLE_IOT_INFO;ENABLE_IOT_WARN;ENABLE_IOT_ERROR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)/../../dependency/Luna/src/Library;$(SolutionDir)/../../dependency/Luna/src/FossLibrary;$(SolutionDir)/../../dependency/Luna/src/ThirdPartyLibrary;$(SolutionDir)/../../dependency/Luna/src/ProductLibrary;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/include;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/platform/win32/common;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/platform/win32/mbedtls;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/platform/win32/thread;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/external_libs/jsmn;$(SolutionDir)/../../dependency/mbedTLS/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../../dependency/Luna/src/Library;$(SolutionDir)/../../dependency/Luna/src/FossLibrary;$(SolutionDir)/../../dependency/Luna/src/ThirdPartyLibrary;$(SolutionDir)/../../dependency/Luna/src/ProductLibrary;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/include;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/platform/common_timer;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/platform/win32/mbedtls;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/platform/win32/thread;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/external_libs/jsmn;$(SolutionDir)/../../dependency/mbedTLS/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -69,7 +69,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)/../../dependency/Luna/src/Library;$(SolutionDir)/../../dependency/Luna/src/FossLibrary;$(SolutionDir)/../../dependency/Luna/src/ThirdPartyLibrary;$(SolutionDir)/../../dependency/Luna/src/ProductLibrary;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/include;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/platform/win32/common;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/platform/win32/mbedtls;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/platform/win32/thread;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/external_libs/jsmn;$(SolutionDir)/../../dependency/mbedTLS/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../../dependency/Luna/src/Library;$(SolutionDir)/../../dependency/Luna/src/FossLibrary;$(SolutionDir)/../../dependency/Luna/src/ThirdPartyLibrary;$(SolutionDir)/../../dependency/Luna/src/ProductLibrary;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/include;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/platform/common_timer;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/platform/win32/mbedtls;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/platform/win32/thread;$(SolutionDir)/../../dependency/AWSIoTEmbeddedSDK/external_libs/jsmn;$(SolutionDir)/../../dependency/mbedTLS/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>

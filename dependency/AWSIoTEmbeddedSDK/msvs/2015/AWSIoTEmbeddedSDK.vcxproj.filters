@@ -22,14 +22,14 @@
     <Filter Include="platform\win32">
       <UniqueIdentifier>{4aadd02f-079a-43d8-831e-49ad622e6607}</UniqueIdentifier>
     </Filter>
-    <Filter Include="platform\win32\common">
-      <UniqueIdentifier>{7ab8d5f6-36bd-439b-a244-73582ed00180}</UniqueIdentifier>
-    </Filter>
     <Filter Include="platform\win32\mbedtls">
       <UniqueIdentifier>{2a126033-b840-4000-885b-a14f332f3f6a}</UniqueIdentifier>
     </Filter>
     <Filter Include="platform\win32\thread">
       <UniqueIdentifier>{450746b7-cc3e-44fc-be49-a41600e4cf4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\common_timer">
+      <UniqueIdentifier>{3a2afa5f-0fb5-4ecd-82f1-f9974888aba6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -84,9 +84,6 @@
     <ClInclude Include="..\..\include\timer_interface.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\platform\win32\common\timer_platform.h">
-      <Filter>platform\win32\common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\platform\win32\mbedtls\network_platform.h">
       <Filter>platform\win32\mbedtls</Filter>
     </ClInclude>
@@ -95,6 +92,9 @@
     </ClInclude>
     <ClInclude Include="..\..\external_libs\jsmn\jsmn.h">
       <Filter>external_libs\jsmn</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platform\common_timer\timer_platform.h">
+      <Filter>platform\common_timer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -143,8 +143,8 @@
     <ClCompile Include="..\..\external_libs\jsmn\jsmn.c">
       <Filter>external_libs\jsmn</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\platform\win32\common\timer.cpp">
-      <Filter>platform\win32\common</Filter>
+    <ClCompile Include="..\..\platform\common_timer\timer.cpp">
+      <Filter>platform\common_timer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

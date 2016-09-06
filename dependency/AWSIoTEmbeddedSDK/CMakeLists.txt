@@ -10,7 +10,7 @@ PROJECT(aws_iot_sdk)
 include_directories( 
 	./
 	./include
-	./platform/linux/common
+	./platform/common_timer
 	./platform/linux/mbedtls
 	./platform/linux/pthread
 	./external_libs/jsmn
@@ -19,7 +19,7 @@ include_directories(
 
 file(GLOB SRC_FILES 
 	src/*.*
-	platform/linux/common/*.c
+	platform/common_timer/*.cpp
 	platform/linux/mbedtls/*.c
 	platform/linux/pthread/*.c
 	external_libs/jsmn/*.c
