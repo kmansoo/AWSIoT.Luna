@@ -35,7 +35,6 @@ bool AWSIoTAgent::init(ArduinoAgent* agent, const std::string& aws_config_filean
     char rootCA[PATH_MAX + 1];
     char clientCRT[PATH_MAX + 1];
     char clientKey[PATH_MAX + 1];
-    char cPayload[100];
 
     int32_t i = 0;
 
@@ -124,8 +123,6 @@ bool AWSIoTAgent::init(ArduinoAgent* agent, const std::string& aws_config_filean
 
         return false;
     }
-
-    sprintf(cPayload, "%s : %d ", "hello from SDK", i);
 
     paramsQOS0_.qos = QOS0;
     paramsQOS0_.payload = (void *)payload_buffer_.c_str();
