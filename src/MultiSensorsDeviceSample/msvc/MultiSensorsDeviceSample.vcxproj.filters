@@ -12,9 +12,21 @@
     <ClCompile Include="..\src\AWSIoTConnectionInfo.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\ArduinoAgent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\AWSIoTAgent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\AWSIoTConnectionInfo.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\AWSIoTAgent.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ArduinoAgent.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

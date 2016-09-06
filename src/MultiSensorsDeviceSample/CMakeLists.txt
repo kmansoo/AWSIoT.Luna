@@ -22,9 +22,12 @@ add_definitions(
 	-DENABLE_IOT_ERROR
 )
 
+file(GLOB SRC_FILES 
+	src/*.cpp
+)
+
 add_executable(MultiSensorsDeviceSample
-    src/main.cpp
-	src/AWSIoTConnectionInfo.cpp
+    ${SRC_FILES}
 )
 
 if ("${DEVICE}" MATCHES "RPi")
@@ -40,6 +43,7 @@ TARGET_LINK_LIBRARIES(MultiSensorsDeviceSample
 else ("${DEVICE}" MATCHES "RPi")
 TARGET_LINK_LIBRARIES(MultiSensorsDeviceSample
 	ccJsonParser
+	ccCore
 	AWSIoTEmbeddedSDK
 	mbedtls
 	mbedcrypto

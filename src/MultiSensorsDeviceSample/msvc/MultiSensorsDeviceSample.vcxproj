@@ -112,10 +112,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\ArduinoAgent.cpp" />
+    <ClCompile Include="..\src\AWSIoTAgent.cpp" />
     <ClCompile Include="..\src\AWSIoTConnectionInfo.cpp" />
     <ClCompile Include="..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\ArduinoAgent.h" />
+    <ClInclude Include="..\src\AWSIoTAgent.h" />
     <ClInclude Include="..\src\AWSIoTConnectionInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
