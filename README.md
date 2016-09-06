@@ -3,7 +3,8 @@ This project aims to show how to use AWS IoT Embedded C SDK with Luna SW Platfor
 
 # How to build
 ## Win32
-This project does not support Win32 yet.
+AWSIoT.Luna has a solution file for Visual Studio 2015, so you can build very easy.
+You can find and use a solution file for visual studio 2005 like './msvs/2005/AWSIoT.Luna.sin'.
 
 ## macOS(OS X) and Linux(i386)
 ```bash
