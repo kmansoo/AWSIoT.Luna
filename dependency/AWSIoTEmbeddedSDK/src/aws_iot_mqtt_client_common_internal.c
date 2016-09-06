@@ -41,7 +41,11 @@ extern "C" {
 #endif
 
 #include <aws_iot_mqtt_client.h>
-#include <unistd.h>
+
+#ifndef WIN32
+#   include <unistd.h>
+#endif // !WIN32
+
 #include "aws_iot_mqtt_client_common_internal.h"
 
 /* Max length of packet header */

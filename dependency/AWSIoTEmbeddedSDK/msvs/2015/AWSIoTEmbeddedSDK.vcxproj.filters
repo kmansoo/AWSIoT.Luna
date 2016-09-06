@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{59a4b8ba-fb7c-461b-b082-93c169602409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{ccc17c6a-a254-4487-8b92-e8a6393f32c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform">
+      <UniqueIdentifier>{fb17f191-b14e-4518-8aa5-e69c994fcab5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external_libs">
+      <UniqueIdentifier>{d402ee8a-bbf8-4870-9e6d-8068473dacb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external_libs\jsmn">
+      <UniqueIdentifier>{00ae603b-e1a7-4870-a275-a2ae43fbdfd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\win32">
+      <UniqueIdentifier>{4aadd02f-079a-43d8-831e-49ad622e6607}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\win32\common">
+      <UniqueIdentifier>{7ab8d5f6-36bd-439b-a244-73582ed00180}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\win32\mbedtls">
+      <UniqueIdentifier>{2a126033-b840-4000-885b-a14f332f3f6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\win32\thread">
+      <UniqueIdentifier>{450746b7-cc3e-44fc-be49-a41600e4cf4b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\aws_iot_config_default.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aws_iot_error.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aws_iot_json_utils.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aws_iot_log.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aws_iot_mqtt_client.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aws_iot_mqtt_client_common_internal.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aws_iot_mqtt_client_interface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aws_iot_shadow_actions.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aws_iot_shadow_interface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aws_iot_shadow_json.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aws_iot_shadow_json_data.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aws_iot_shadow_key.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aws_iot_shadow_records.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\aws_iot_version.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\network_interface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\threads_interface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\timer_interface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platform\win32\common\timer_platform.h">
+      <Filter>platform\win32\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platform\win32\mbedtls\network_platform.h">
+      <Filter>platform\win32\mbedtls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platform\win32\thread\threads_platform.h">
+      <Filter>platform\win32\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external_libs\jsmn\jsmn.h">
+      <Filter>external_libs\jsmn</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\aws_iot_mqtt_client.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aws_iot_mqtt_client_common_internal.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aws_iot_mqtt_client_connect.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aws_iot_mqtt_client_publish.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aws_iot_mqtt_client_subscribe.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aws_iot_mqtt_client_unsubscribe.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aws_iot_mqtt_client_yield.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aws_iot_shadow.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aws_iot_shadow_actions.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aws_iot_shadow_json.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aws_iot_shadow_records.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\aws_iot_json_utils.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platform\win32\mbedtls\network_mbedtls_wrapper.c">
+      <Filter>platform\win32\mbedtls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platform\win32\thread\threads_pthread_wrapper.c">
+      <Filter>platform\win32\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external_libs\jsmn\jsmn.c">
+      <Filter>external_libs\jsmn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platform\win32\common\timer.cpp">
+      <Filter>platform\win32\common</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

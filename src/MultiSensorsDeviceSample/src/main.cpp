@@ -28,7 +28,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <unistd.h>
+
+#ifndef WIN32
+#   include <unistd.h>
+#else
+#   define  PATH_MAX    512
+#   define  __PRETTY_FUNCTION__ "client:"
+#endif
+
 #include <limits.h>
 #include <string.h>
 
@@ -39,10 +46,12 @@
 // wiring Pi
 #include "ccJsonParser/json/reader.h"
 
-#include <stdint.h> //uint8_t definitions
-#include <errno.h> //error output
-#include <wiringPi.h>
-#include <wiringSerial.h>
+#ifdef LUNA_PLATFORM_RPI
+
+#   include <stdint.h> //uint8_t definitions
+#   include <errno.h> //error output
+#   include <wiringPi.h>
+#   include <wiringSerial.h>
 
 // Find Serial device on Raspberry with ~ls /dev/tty*
 // ARDUINO_UNO "/dev/ttyACM0"
@@ -110,6 +119,7 @@ void loop(){
   }
 
 }
+#endif // LUNA_PLATFORM_RPI
 
 ////////////////////
 
@@ -197,10 +207,9 @@ int main(int argc, char *argv[]) {
 
 	IOT_INFO("\nAWS IoT SDK Version %d.%d.%d-%s\n", VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_TAG);
 
-	getcwd(CurrentWD, sizeof(CurrentWD));
-	snprintf(rootCA, PATH_MAX + 1, "%s/%s/%s", CurrentWD, cert_directory.c_str(), conn_info.get_root_ca_filename().c_str());
-	snprintf(clientCRT, PATH_MAX + 1, "%s/%s/%s", CurrentWD, cert_directory.c_str(), conn_info.get_certificate_filename().c_str());
-	snprintf(clientKey, PATH_MAX + 1, "%s/%s/%s", CurrentWD, cert_directory.c_str(), conn_info.get_private_key_filename().c_str());
+	snprintf(rootCA, PATH_MAX + 1, "%s/%s", cert_directory.c_str(), conn_info.get_root_ca_filename().c_str());
+	snprintf(clientCRT, PATH_MAX + 1, "%s/%s", cert_directory.c_str(), conn_info.get_certificate_filename().c_str());
+	snprintf(clientKey, PATH_MAX + 1, "%s/%s", cert_directory.c_str(), conn_info.get_private_key_filename().c_str());
 
 	IOT_DEBUG("rootCA %s", rootCA);
 	IOT_DEBUG("clientCRT %s", clientCRT);
@@ -275,28 +284,30 @@ int main(int argc, char *argv[]) {
 	paramsQOS1.payload = (void *) cPayload;
 	paramsQOS1.isRetained = 0;
 
-	if(publishCount != 0) {
-		infinitePublishFlag = false;
-	}
+    if (publishCount != 0) {
+        infinitePublishFlag = false;
+    }
 
-        // setup();
-        setup();
+    std::thread t([&] {
+        while (true) {
+            rc = aws_iot_mqtt_yield(&client, 100);
+        }
+    });
 
-	std::thread t([&] {
-		while (true) {
-			rc = aws_iot_mqtt_yield(&client, 100);
-                }
-	});
+#ifdef LUNA_PLATFORM_RPI
+    setup();
 
-        std::thread t2([&] {
-                while (true) {
-                        loop();
-                        usleep(1000);
-                }
-        });
+    std::thread t2([&] {
+        while (true) {
+            loop();
+            usleep(1000);
+        }
+    });
 
-	t.join();
-        t2.join();
+    t2.join(); 
+#endif
+
+    t.join();
 
 	if(SUCCESS != rc) {
 		IOT_ERROR("An error occurred in the loop.\n");

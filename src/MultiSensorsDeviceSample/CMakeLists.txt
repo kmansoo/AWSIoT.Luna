@@ -27,12 +27,23 @@ add_executable(MultiSensorsDeviceSample
 	src/AWSIoTConnectionInfo.cpp
 )
 
+if ("${DEVICE}" MATCHES "RPi")
 TARGET_LINK_LIBRARIES(MultiSensorsDeviceSample
 	ccJsonParser
-        wiringPi
+	wiringPi
 	AWSIoTEmbeddedSDK
 	mbedtls
 	mbedcrypto
 	mbedx509
 	pthread
 )
+else ("${DEVICE}" MATCHES "RPi")
+TARGET_LINK_LIBRARIES(MultiSensorsDeviceSample
+	ccJsonParser
+	AWSIoTEmbeddedSDK
+	mbedtls
+	mbedcrypto
+	mbedx509
+	pthread
+)
+endif ("${DEVICE}" MATCHES "RPi")
