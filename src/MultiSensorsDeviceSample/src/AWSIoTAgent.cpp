@@ -20,7 +20,7 @@
 
 #include "AWSIoTAgent.h"
 
-//  constructor
+ //  constructor
 AWSIoTAgent::AWSIoTAgent() : arduino_agent_(nullptr), stop_(false) {
 
 }
@@ -141,8 +141,7 @@ bool AWSIoTAgent::init(ArduinoAgent* agent, const std::string& aws_config_filean
 
         if (SUCCESS != rc) {
             IOT_ERROR("An error occurred in the loop.\n");
-        }
-        else {
+        } else {
             IOT_INFO("Publish done\n");
         }
     });
@@ -159,7 +158,7 @@ void AWSIoTAgent::stop() {
 }
 
 void AWSIoTAgent::iot_subscribe_callback_handler(AWS_IoT_Client *pClient, char *topicName, uint16_t topicNameLen,
-    IoT_Publish_Message_Params *params, void *pData) {
+                                                 IoT_Publish_Message_Params *params, void *pData) {
 
     IOT_UNUSED(pData);
     IOT_UNUSED(pClient);
@@ -182,7 +181,7 @@ void AWSIoTAgent::iot_subscribe_callback_handler(AWS_IoT_Client *pClient, char *
         agent->paramsQOS0_.payload = (void*)agent->payload_buffer_.c_str();
         agent->paramsQOS0_.payloadLen = agent->payload_buffer_.length();
 
-        IoT_Error_t rc = aws_iot_mqtt_publish(pClient, TOPIC_MANSOO_TEMPERATURE_SENSOR_STATUS, strlen(TOPIC_MANSOO_TEMPERATURE_SENSOR_STATUS),  &(agent->paramsQOS0_));
+        IoT_Error_t rc = aws_iot_mqtt_publish(pClient, TOPIC_MANSOO_TEMPERATURE_SENSOR_STATUS, strlen(TOPIC_MANSOO_TEMPERATURE_SENSOR_STATUS), &(agent->paramsQOS0_));
     }
 
     if (topic_name == TOPIC_MANSOO_RETRIEVE_DISTANCE) {
@@ -218,16 +217,14 @@ void AWSIoTAgent::disconnectCallbackHandler(AWS_IoT_Client *pClient, void *data)
 
     if (aws_iot_is_autoreconnect_enabled(pClient)) {
         IOT_INFO("Auto Reconnect is enabled, Reconnecting attempt will start now");
-    }
-    else {
+    } else {
         IOT_WARN("Auto Reconnect not enabled. Starting manual reconnect...");
 
         rc = aws_iot_mqtt_attempt_reconnect(pClient);
 
         if (NETWORK_RECONNECTED == rc) {
             IOT_WARN("Manual Reconnect Successful");
-        }
-        else {
+        } else {
             IOT_WARN("Manual Reconnect Failed - %d", rc);
 
             ((AWSIoTAgent*)data)->stop();

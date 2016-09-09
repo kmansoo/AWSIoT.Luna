@@ -29,13 +29,13 @@ public:
 public:
     bool    load_file(const std::string& filename);
 
-    const std::string&  get_mqtt_host() {return mqtt_host_;}
-    const std::uint16_t get_mqtt_port() {return mqtt_port_;}
-    const std::string&  get_mqtt_client_id() {return mqtt_client_id_;}
-    const std::string&  get_my_thing_name() {return my_thing_name_;}
-    const std::string&  get_root_ca_filename() {return root_ca_filename_;}
-    const std::string&  get_certificate_filename() {return certificate_filename_;}
-    const std::string&  get_private_key_filename() {return private_key_filename_;}
+    const std::string&  get_mqtt_host() { return mqtt_host_; }
+    const std::uint16_t get_mqtt_port() { return mqtt_port_; }
+    const std::string&  get_mqtt_client_id() { return mqtt_client_id_; }
+    const std::string&  get_my_thing_name() { return my_thing_name_; }
+    const std::string&  get_root_ca_filename() { return root_ca_filename_; }
+    const std::string&  get_certificate_filename() { return certificate_filename_; }
+    const std::string&  get_private_key_filename() { return private_key_filename_; }
 
 private:
     std::string mqtt_host_;

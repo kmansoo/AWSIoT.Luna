@@ -30,7 +30,7 @@ bool AWSIoTConnectionInfo::load_file(const std::string& filename) {
         return false;
     }
 
-    if (root_value.isObject() == false)  {
+    if (root_value.isObject() == false) {
         std::cout << "step2" << std::endl;
         return false;
     }
