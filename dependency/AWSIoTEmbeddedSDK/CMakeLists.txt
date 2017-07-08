@@ -7,6 +7,8 @@ PROJECT(aws_iot_sdk)
 #
 # Configuration
 
+SET(MBED_TLS, ../Luna/dependency/mbedtls)
+
 include_directories( 
 	./
 	./include
@@ -14,7 +16,7 @@ include_directories(
 	./platform/linux/mbedtls
 	./platform/linux/pthread
 	./external_libs/jsmn
-	${MBED_TLS}/include
+	../Luna/dependency/mbedtls/include
 )
 
 file(GLOB SRC_FILES 

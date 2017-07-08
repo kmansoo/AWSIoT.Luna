@@ -8,7 +8,7 @@
 #include "ccCore/ccString.h"
 
 #include <iostream>
-
+#include <cstdlib>
 #include <string.h>
 
 #ifndef WIN32
@@ -58,6 +58,8 @@ bool AWSIoTAgent::init(ArduinoAgent* agent, const std::string& aws_config_filean
     IOT_DEBUG("clientCRT %s", clientCRT);
     IOT_DEBUG("clientKey %s", clientKey);
 
+    IOT_DEBUG("HostURL %s", conn_info_.get_mqtt_host().c_str());
+
     mqttInitParams.enableAutoReconnect = true; // We enable this later below
     mqttInitParams.pHostURL = (char*)conn_info_.get_mqtt_host().c_str();
     mqttInitParams.port = conn_info_.get_mqtt_port();
@@ -71,6 +73,7 @@ bool AWSIoTAgent::init(ArduinoAgent* agent, const std::string& aws_config_filean
     mqttInitParams.disconnectHandlerData = this;
 
     rc = aws_iot_mqtt_init(&client_, &mqttInitParams);
+
     if (SUCCESS != rc) {
         IOT_ERROR("aws_iot_mqtt_init returned error : %d ", rc);
 
@@ -137,6 +140,30 @@ bool AWSIoTAgent::init(ArduinoAgent* agent, const std::string& aws_config_filean
 
         while (stop_ == false) {
             status = aws_iot_mqtt_yield(&client_, 100);
+
+            //  for SNS notify test 
+            /*
+                if ( (std::rand() % 1000) == 777) {
+                    Luna::ccString::format(
+                        payload_buffer_,
+                        "{\"device\": {\"type\": \"temperature_sensor\", \"temperature\" : %4.1f, \"humidity\" : %4.1f}}\n",
+                        36,
+                        arduino_agent_->get_humidity());
+
+                    std::cout << "-----------------------------------" << std::endl;
+                    std::cout << "Now, temperature is very high, so this status must notify some people." << payload_buffer_ << std::endl;
+                    std::cout << "Payload: " << payload_buffer_ << std::endl;
+                    std::cout << "-----------------------------------" << std::endl << std::endl;
+
+                    paramsQOS0_.payload = (void*)payload_buffer_.c_str();
+                    paramsQOS0_.payloadLen = payload_buffer_.length();
+
+                    IoT_Error_t rc = aws_iot_mqtt_publish(
+                        &client_, TOPIC_MANSOO_TEMPERATURE_SENSOR_STATUS, 
+                        strlen(TOPIC_MANSOO_TEMPERATURE_SENSOR_STATUS), 
+                        &paramsQOS0_);            
+                } 
+            */          
         }
 
         if (SUCCESS != rc) {

@@ -38,10 +38,13 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 SET(LUNA_SW_PLATFORM ${CMAKE_CURRENT_SOURCE_DIR}/dependency/Luna)
 SET(LUNA_SW_PLATFORM_SDK 
-	${LUNA_SW_PLATFORM}/src/Library
-	${LUNA_SW_PLATFORM}/src/FossLibrary
-	${LUNA_SW_PLATFORM}/src/ThirdPartyLibrary
-	${LUNA_SW_PLATFORM}/src/ProductLibrary
+	${LUNA_SW_PLATFORM}/src/Library/ccCore/include
+	${LUNA_SW_PLATFORM}/src/Library/ccNetwork/include
+	${LUNA_SW_PLATFORM}/src/Library/ccWebServer/include
+	${LUNA_SW_PLATFORM}/src/Library/ccCore/include
+	${LUNA_SW_PLATFORM}/src/ThirdPartyLibrary/ccMongooseServer/include
+	${LUNA_SW_PLATFORM}/src/FossLibrary/ccJsonParser/include
+	${LUNA_SW_PLATFORM}/dependency/mbedtls/include
 )
 
 SET(MBED_TLS ${CMAKE_CURRENT_SOURCE_DIR}/dependency/mbedTLS)
@@ -66,7 +69,6 @@ link_directories(${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 # Make Libraries
 #
 ADD_SUBDIRECTORY(dependency/Luna)
-ADD_SUBDIRECTORY(dependency/mbedTLS)
 ADD_SUBDIRECTORY(dependency/AWSIoTEmbeddedSDK)
 
 #

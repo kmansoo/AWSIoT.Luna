@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-#include "ccJsonParser/json/reader.h"
+#include "json/reader.h"
 
 #include "ArduinoAgent.h"
 

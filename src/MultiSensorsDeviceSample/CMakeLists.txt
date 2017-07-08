@@ -9,7 +9,6 @@ PROJECT(multi_sensors_device_sample)
 
 include_directories(
 	./
-	${MBED_TLS}/include 
 	${AWS_IOT_EMBEDDED_SDK_LINUX}
 	${LUNA_SW_PLATFORM_SDK}
 )
