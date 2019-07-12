@@ -8,6 +8,8 @@ You can find and use a solution file for visual studio 2005 like './msvs/2005/AW
 
 ## macOS(OS X) and Linux(i386)
 ```bash
+git submodule init
+git submodule update
 mkdir build
 cd build
 cmake ..
@@ -16,6 +18,8 @@ make -j4
 
 ## Raspberry Pi2 or Pi3
 ```bash
+git submodule init
+git submodule update
 mkdir build
 cd build
 cmake .. -DDEVICE=RPi
