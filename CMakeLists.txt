@@ -10,6 +10,10 @@ PROJECT(aws_iot_with_luna)
 # SET(CMAKE_VERBOSE_MAKEFILE ON)
 #
 
+option(GIT_SUBMODULE      "Check submodules during build"               ON)
+option(USE_MBEDTLS        "Use Mbedtls library"                         ON)
+option(USE_CURL           "Use Curl library"                            ON)
+
 # If you want to build with Razpberry toolchain for RPi 2 or 3, you must use following option with cmake.
 # cmake -DCMAKE_TOOLCHAIN_FILE=toolchain.rpi.arm.cmake
 
